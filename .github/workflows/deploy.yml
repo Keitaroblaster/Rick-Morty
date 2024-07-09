@@ -1,0 +1,46 @@
+# Nom du workflow GitHub Actions
+name: Deploy to GitHub Pages
+
+# Déclenchement du workflow lors du push sur la branche "main"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Nom du job de déploiement
+  deploy:
+    name: Deploy to GitHub Pages
+    # Utilise la dernière version d'Ubuntu pour exécuter les étapes
+    runs-on: ubuntu-latest
+    # Permissions pour autoriser l'écriture de contenu sur le dépôt
+    permissions:
+      contents: write
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - uses: actions/checkout@v4
+      # Étape 2 : Configurer Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Utilise la version 20 de Node.js
+          cache: npm # Active la mise en cache de npm pour accélérer les installations futures
+
+      # Étape 3 : Installer les dépendances du projet
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+
+      # Étape 4 : Construire l'application Angular
+      - name: Build website
+        run: npm run build
+
+      # Étape 5 : Déployer sur GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Utilise le token GitHub pour authentifier l'action
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Répertoire à publier sur la branche gh-pages
+          publish_dir: ./dist/rickymorti
+          # Définir l'auteur du commit comme le bot GitHub Actions
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
