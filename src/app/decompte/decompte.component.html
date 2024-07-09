@@ -1,0 +1,5 @@
+<div class="decompte-container">
+    <p>Temps restant : {{ heures }}:{{ minutes }}:{{ secondes }}</p>
+  <button (click)="tirerCarte()" [disabled]="!afficherBoutonTirage">Tirez une carte</button>
+</div><br>
+<app-carte *ngIf="character" [character]="character"></app-carte>

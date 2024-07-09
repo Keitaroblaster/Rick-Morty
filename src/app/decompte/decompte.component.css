@@ -1,0 +1,20 @@
+.decompte-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    text-align: center;
+  }
+  
+  .decompte-container p {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .decompte-container button {
+    padding: 10px 20px;
+    background-color:cornflowerblue;
+    font-size: 18px;
+    cursor: pointer;
+  }
