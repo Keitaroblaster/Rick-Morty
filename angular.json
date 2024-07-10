@@ -27,8 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "baseHref": "/Rick-Morty"
+            "scripts": []
           },
           "configurations": {
             "production": {
